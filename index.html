@@ -17,6 +17,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        transition: background 1s ease;
     }
 
     h1 {
@@ -24,6 +25,14 @@
         font-size: 3em;
         text-shadow: 2px 2px #ff99cc;
         margin-bottom: 40px;
+        text-align: center;
+    }
+
+    p {
+        font-size: 1.5em;
+        color: #ff3399;
+        text-align: center;
+        margin: 10px 0;
     }
 
     button {
@@ -88,11 +97,24 @@
         0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
         100% { transform: translateY(-800px) rotate(-45deg); opacity: 0; }
     }
+
+    /* Congratulation container */
+    .congrats {
+        position: relative;
+        z-index: 1;
+        animation: fadeIn 2s ease forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: scale(0.8);}
+        100% { opacity: 1; transform: scale(1);}
+    }
 </style>
 </head>
 <body>
 
-<h1>Will You Be My Wife?</h1>
+<h1>Will You Be My wife?</h1>
 <button id="yesBtn">Yes ❤️</button>
 <button id="noBtn">No 💔</button>
 
@@ -127,14 +149,19 @@
     // Yes button click shows congratulations page
     yesBtn.addEventListener('click', () => {
         document.body.innerHTML = `
-            <h1>🎉 Congratulations! 🎉</h1>
-            <p>You just made my day brighter! 💖</p>
-            <p>Thank you for saying YES! 😍</p>
+            <div class="congrats">
+                <h1>🎉 Congratulations My Love! 🎉</h1>
+                <p>Our marriage is fixed on <strong>7 Feb 2026 ❤️</strong></p>
+                <p>"You are my today and all of my tomorrows." 💖</p>
+                <p>Thank you for saying YES! 😍</p>
+            </div>
         `;
         document.body.style.background = "#ff99cc";
+
+        // Keep floating hearts
+        setInterval(createHeart, 300);
     });
 </script>
 
 </body>
 </html>
-
